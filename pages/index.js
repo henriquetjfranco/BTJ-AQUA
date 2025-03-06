@@ -58,14 +58,16 @@ export default function FichaApp() {
   };
 
   return (
-    <div className="p-6 max-w-lg mx-auto">
+    <div className="p-4 max-w-md mx-auto">
       {/* LOGO BTJ */}
-      <img src="/logo-btj.png" alt="BTJ AQUA" className="mx-auto mb-4 w-32" />
+      <div className="flex justify-center mb-4">
+        <img src="https://i.imgur.com/TU7U1F5.png" alt="BTJ AQUA" className="w-32" />
+      </div>
 
       <h1 className="text-xl font-bold mb-4 text-center">Ficha Contagem Estoque Ração</h1>
 
-      <input type="date" name="data" value={formData.data} onChange={handleChange} className="border p-2 w-full mb-2 text-gray-500" />
-      <input type="time" name="hora" value={formData.hora} onChange={handleChange} className="border p-2 w-full mb-2 text-gray-500" />
+      <input type="date" name="data" value={formData.data} onChange={handleChange} className="border p-2 w-full mb-2 text-gray-500" placeholder="Selecione a data" />
+      <input type="time" name="hora" value={formData.hora} onChange={handleChange} className="border p-2 w-full mb-2 text-gray-500" placeholder="Digite a hora" />
       <input type="text" name="responsavel" placeholder="Nome do responsável" value={formData.responsavel} onChange={handleChange} className="border p-2 w-full mb-4 text-gray-500" />
 
       {["carretao1", "carretao2", "carretao3"].map((carretao, idx) => (
@@ -77,17 +79,17 @@ export default function FichaApp() {
                 <span className="w-6 text-sm">{i + 1}</span>
                 <input
                   type="text"
-                  placeholder="Digite o tipo de ração"
+                  placeholder="Tipo de ração"
                   value={formData[carretao][i].racao}
                   onChange={(e) => handleCarretaoChange(i, carretao, "racao", e.target.value)}
-                  className="border p-1 w-16 text-gray-500 text-sm"
+                  className="border p-1 w-24 text-gray-500 text-sm"
                 />
                 <input
                   type="number"
-                  placeholder="Kg disponíveis"
+                  placeholder="Kg"
                   value={formData[carretao][i].kgs}
                   onChange={(e) => handleCarretaoChange(i, carretao, "kgs", e.target.value)}
-                  className="border p-1 w-12 text-gray-500 text-sm"
+                  className="border p-1 w-16 text-gray-500 text-sm"
                 />
               </div>
             ))}
@@ -106,7 +108,7 @@ export default function FichaApp() {
 
       {/* PEIXE E FRASE FINAL */}
       <div className="text-center mt-6">
-        <img src="/peixe.png" alt="Peixe BTJ" className="mx-auto w-16" />
+        <img src="https://i.imgur.com/vGmC5It.png" alt="Peixe BTJ" className="mx-auto w-16" />
         <p className="text-gray-600 font-semibold">
           Fortalecer pessoas, pescando o melhor para nossos clientes
         </p>
