@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef } from "react";
 import html2canvas from "html2canvas";
 
 export default function FichaApp() {
@@ -61,9 +61,9 @@ export default function FichaApp() {
 
   return (
     <div className="p-4 max-w-lg mx-auto">
-      {/* LOGO BTJ (Corrigido) */}
+      {/* LOGO BTJ (Carregando da pasta public) */}
       <div className="flex justify-center mb-4">
-        <img src="https://i.imgur.com/NUypBOJ.png" alt="BTJ AQUA" className="w-40 h-auto" />
+        <img src="/BTJ.png" alt="BTJ AQUA" className="w-40 h-auto" />
       </div>
 
       <h1 className="text-xl font-bold mb-4 text-center">Ficha Contagem Estoque Ração</h1>
@@ -111,9 +111,9 @@ export default function FichaApp() {
         Compartilhar
       </button>
 
-      {/* PEIXE E FRASE FINAL (Corrigido) */}
+      {/* PEIXE E FRASE FINAL (Carregando da pasta public) */}
       <div className="text-center mt-6">
-        <img src="https://i.imgur.com/4rQgXMj.png" alt="Peixe BTJ" className="mx-auto w-16 h-auto" />
+        <img src="/Peixe.png" alt="Peixe BTJ" className="mx-auto w-16 h-auto" />
         <p className="text-gray-600 font-semibold">
           Fortalecer pessoas, pescando o melhor para nossos clientes
         </p>
