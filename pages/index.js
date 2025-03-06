@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import html2canvas from "html2canvas";
 
 export default function FichaApp() {
@@ -60,10 +60,10 @@ export default function FichaApp() {
   };
 
   return (
-    <div className="p-4 max-w-md mx-auto">
+    <div className="p-4 max-w-lg mx-auto">
       {/* LOGO BTJ (Corrigido) */}
       <div className="flex justify-center mb-4">
-        <img src="https://i.imgur.com/NUypBOJ.png" alt="BTJ AQUA" className="w-32" />
+        <img src="https://i.imgur.com/NUypBOJ.png" alt="BTJ AQUA" className="w-40 h-auto" />
       </div>
 
       <h1 className="text-xl font-bold mb-4 text-center">Ficha Contagem Estoque Ração</h1>
@@ -76,23 +76,23 @@ export default function FichaApp() {
         {["carretao1", "carretao2", "carretao3"].map((carretao, idx) => (
           <div key={carretao} className="mb-4">
             <h2 className="text-lg font-semibold">Carretão {idx + 1}</h2>
-            <div className="grid grid-cols-4 gap-2">
+            <div className="grid grid-cols-3 gap-2">
               {[...Array(carretao === "carretao2" ? 6 : 8)].map((_, i) => (
                 <div key={i} className="flex items-center space-x-2">
                   <span className="w-6 text-sm">{i + 1}</span>
                   <input
                     type="text"
-                    placeholder="Ração"
+                    placeholder="Tipo"
                     value={formData[carretao][i].racao}
                     onChange={(e) => handleCarretaoChange(i, carretao, "racao", e.target.value)}
-                    className="border p-1 w-24 text-gray-500 text-sm rounded"
+                    className="border p-2 w-24 text-gray-500 text-sm rounded"
                   />
                   <input
                     type="number"
                     placeholder="Kg"
                     value={formData[carretao][i].kgs}
                     onChange={(e) => handleCarretaoChange(i, carretao, "kgs", e.target.value)}
-                    className="border p-1 w-16 text-gray-500 text-sm rounded"
+                    className="border p-2 w-16 text-gray-500 text-sm rounded"
                   />
                 </div>
               ))}
@@ -113,7 +113,7 @@ export default function FichaApp() {
 
       {/* PEIXE E FRASE FINAL (Corrigido) */}
       <div className="text-center mt-6">
-        <img src="https://i.imgur.com/4rQgXMj.png" alt="Peixe BTJ" className="mx-auto w-16" />
+        <img src="https://i.imgur.com/4rQgXMj.png" alt="Peixe BTJ" className="mx-auto w-16 h-auto" />
         <p className="text-gray-600 font-semibold">
           Fortalecer pessoas, pescando o melhor para nossos clientes
         </p>
