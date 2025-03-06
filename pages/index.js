@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Button } from "@/components/ui/button";
+
 import html2canvas from "html2canvas";
 
 export default function FichaApp() {
@@ -110,8 +110,8 @@ export default function FichaApp() {
         <p><strong>Observações:</strong> {formData.observacao}</p>
       </div>
 
-      <Button onClick={handleExport} className="mt-4 w-full">Exportar como Imagem</Button>
-      <Button onClick={handleShare} className="mt-2 w-full">Compartilhar</Button>
+      <button onClick={handleExport} className="mt-4 w-full">Exportar como Imagem</button>
+      <button onClick={handleShare} className="mt-2 w-full">Compartilhar</button>
     </div>
   );
 }
