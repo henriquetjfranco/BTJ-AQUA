@@ -61,9 +61,9 @@ export default function FichaApp() {
 
   return (
     <div className="p-4 max-w-lg mx-auto">
-      {/* LOGO BTJ (Carregando da pasta public) */}
+      {/* LOGO BTJ (Corrigido e Proporcional) */}
       <div className="flex justify-center mb-4">
-        <img src="/BTJ.png" alt="BTJ AQUA" className="w-40 h-auto" />
+        <img src="/BTJ.png" alt="BTJ AQUA" className="w-32 h-auto object-contain" />
       </div>
 
       <h1 className="text-xl font-bold mb-4 text-center">Ficha Contagem Estoque Ração</h1>
@@ -111,10 +111,10 @@ export default function FichaApp() {
         Compartilhar
       </button>
 
-      {/* PEIXE E FRASE FINAL (Carregando da pasta public) */}
+      {/* PEIXE E FRASE FINAL (Corrigido e Proporcional) */}
       <div className="text-center mt-6">
-        <img src="/Peixe.png" alt="Peixe BTJ" className="mx-auto w-16 h-auto" />
-        <p className="text-gray-600 font-semibold">
+        <img src="/Peixe.png" alt="Peixe BTJ" className="mx-auto w-16 h-auto object-contain" />
+        <p className="text-gray-600 font-semibold mt-2">
           Fortalecer pessoas, pescando o melhor para nossos clientes
         </p>
       </div>
