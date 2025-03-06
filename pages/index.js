@@ -77,36 +77,39 @@ export default function FichaApp() {
           ))}
         </div>
       ))}
-
+{["carretao1", "carretao2", "carretao3"].map((carretao, idx) => (
+  <div key={carretao} className="mb-4">
+    <h2 className="text-lg font-semibold">Carretão {idx + 1}</h2>
+    <div className="grid grid-cols-3 gap-2">
+      {[...Array(carretao === "carretao2" ? 6 : 8)].map((_, i) => (
+        <div key={i} className="flex items-center">
+          <span className="w-6 text-sm">{i + 1}</span>
+          <input
+            type="text"
+            placeholder="Ração"
+            value={formData[carretao][i].racao}
+            onChange={(e) => handleCarretaoChange(i, carretao, "racao", e.target.value)}
+            className="border p-1 w-20 text-sm"
+          />
+          <input
+            type="number"
+            placeholder="Kgs"
+            value={formData[carretao][i].kgs}
+            onChange={(e) => handleCarretaoChange(i, carretao, "kgs", e.target.value)}
+            className="border p-1 w-16 text-sm"
+          />
+        </div>
+      ))}
+    </div>
+  </div>
+))}
       <textarea name="observacao" placeholder="Observações" value={formData.observacao} onChange={handleChange} className="border p-2 w-full mb-4" />
 
       <div id="ficha-preview" className="p-4 border bg-gray-100">
         <p><strong>Data:</strong> {formData.data}</p>
         <p><strong>Hora:</strong> {formData.hora}</p>
         <p><strong>Responsável:</strong> {formData.responsavel}</p>
-        {["carretao1", "carretao2", "carretao3"].map((carretao, idx) => (
-          <div key={carretao}>
-            <h3 className="text-lg font-semibold">Carretão {idx + 1}</h3>
-            <table className="border w-full mb-2">
-              <thead>
-                <tr>
-                  <th className="border p-2">Cx</th>
-                  <th className="border p-2">Ração</th>
-                  <th className="border p-2">Kgs</th>
-                </tr>
-              </thead>
-              <tbody>
-                {[...Array(carretao === "carretao2" ? 6 : 8)].map((_, i) => (
-                  <tr key={i}>
-                    <td className="border p-2">{i + 1}</td>
-                    <td className="border p-2">{formData[carretao][i].racao}</td>
-                    <td className="border p-2">{formData[carretao][i].kgs}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        ))}
+
         <p><strong>Observações:</strong> {formData.observacao}</p>
       </div>
 
