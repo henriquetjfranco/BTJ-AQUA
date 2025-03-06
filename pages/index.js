@@ -1,4 +1,5 @@
-import { useState, useRef } from "react";
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
 import html2canvas from "html2canvas";
 
 export default function FichaApp() {
@@ -12,8 +13,6 @@ export default function FichaApp() {
     observacao: "",
   });
 
-  const fichaRef = useRef(null);
-
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -25,10 +24,10 @@ export default function FichaApp() {
   };
 
   const handleExport = async () => {
-    if (!fichaRef.current) return;
-    const canvas = await html2canvas(fichaRef.current, { scale: 2 });
+    const ficha = document.getElementById("ficha-preview");
+    const canvas = await html2canvas(ficha);
     const image = canvas.toDataURL("image/png");
-
+    
     const link = document.createElement("a");
     link.href = image;
     link.download = "ficha.png";
@@ -36,16 +35,16 @@ export default function FichaApp() {
   };
 
   const handleShare = async () => {
-    if (!fichaRef.current) return;
-    const canvas = await html2canvas(fichaRef.current, { scale: 2 });
+    const ficha = document.getElementById("ficha-preview");
+    const canvas = await html2canvas(ficha);
     const image = canvas.toDataURL("image/png");
-
+    
     if (navigator.share) {
       try {
         const response = await fetch(image);
         const blob = await response.blob();
         const file = new File([blob], "ficha.png", { type: "image/png" });
-
+        
         await navigator.share({
           files: [file],
           title: "Ficha Contagem Estoque Ração",
@@ -60,64 +59,46 @@ export default function FichaApp() {
   };
 
   return (
-    <div className="p-4 max-w-lg mx-auto">
-      {/* LOGO BTJ (Corrigido e Proporcional) */}
-      <div className="flex justify-center mb-4">
-        <img src="/BTJ.png" alt="BTJ AQUA" className="w-32 h-auto object-contain" />
-      </div>
-
-      <h1 className="text-xl font-bold mb-4 text-center">Ficha Contagem Estoque Ração</h1>
-
-      <div ref={fichaRef} className="bg-white p-4 rounded-lg shadow-md">
-        <input type="date" name="data" value={formData.data} onChange={handleChange} className="border p-2 w-full mb-2 text-gray-500" placeholder="Selecione a data" />
-        <input type="time" name="hora" value={formData.hora} onChange={handleChange} className="border p-2 w-full mb-2 text-gray-500" placeholder="Digite a hora" />
-        <input type="text" name="responsavel" placeholder="Nome do responsável" value={formData.responsavel} onChange={handleChange} className="border p-2 w-full mb-4 text-gray-500" />
-
-        {["carretao1", "carretao2", "carretao3"].map((carretao, idx) => (
-          <div key={carretao} className="mb-4">
-            <h2 className="text-lg font-semibold">Carretão {idx + 1}</h2>
-            <div className="grid grid-cols-3 gap-2">
+    <div className="p-6 max-w-lg mx-auto text-center">
+      <img src="/BTJ.png" alt="BTJ Logo" className="mx-auto w-32 mb-4" />
+      <h1 className="text-xl font-bold mb-4">Ficha Contagem Estoque Ração</h1>
+      <input type="date" name="data" value={formData.data} onChange={handleChange} className="border p-2 w-full mb-2" placeholder="Data"/>
+      <input type="time" name="hora" value={formData.hora} onChange={handleChange} className="border p-2 w-full mb-2" placeholder="Hora"/>
+      <input type="text" name="responsavel" placeholder="Nome do responsável" value={formData.responsavel} onChange={handleChange} className="border p-2 w-full mb-4" />
+      
+      {["carretao1", "carretao2", "carretao3"].map((carretao, idx) => (
+        <div key={carretao} className="mb-4">
+          <h2 className="text-lg font-semibold">Carretão {idx + 1}</h2>
+          <table className="border w-full mb-2">
+            <thead>
+              <tr>
+                <th className="border p-2">Cx</th>
+                <th className="border p-2">Ração</th>
+                <th className="border p-2">Kgs</th>
+              </tr>
+            </thead>
+            <tbody>
               {[...Array(carretao === "carretao2" ? 6 : 8)].map((_, i) => (
-                <div key={i} className="flex items-center space-x-2">
-                  <span className="w-6 text-sm">{i + 1}</span>
-                  <input
-                    type="text"
-                    placeholder="Tipo"
-                    value={formData[carretao][i].racao}
-                    onChange={(e) => handleCarretaoChange(i, carretao, "racao", e.target.value)}
-                    className="border p-2 w-24 text-gray-500 text-sm rounded"
-                  />
-                  <input
-                    type="number"
-                    placeholder="Kg"
-                    value={formData[carretao][i].kgs}
-                    onChange={(e) => handleCarretaoChange(i, carretao, "kgs", e.target.value)}
-                    className="border p-2 w-16 text-gray-500 text-sm rounded"
-                  />
-                </div>
+                <tr key={i}>
+                  <td className="border p-2 text-center">{i + 1}</td>
+                  <td className="border p-2"><input type="text" placeholder="Tipo" value={formData[carretao][i].racao} onChange={(e) => handleCarretaoChange(i, carretao, "racao", e.target.value)} className="w-full p-1"/></td>
+                  <td className="border p-2"><input type="number" placeholder="Kg" value={formData[carretao][i].kgs} onChange={(e) => handleCarretaoChange(i, carretao, "kgs", e.target.value)} className="w-full p-1"/></td>
+                </tr>
               ))}
-            </div>
-          </div>
-        ))}
-
-        <textarea name="observacao" placeholder="Observações" value={formData.observacao} onChange={handleChange} className="border p-2 w-full mb-4 text-gray-500 rounded" />
+            </tbody>
+          </table>
+        </div>
+      ))}
+      
+      <textarea name="observacao" placeholder="Observações" value={formData.observacao} onChange={handleChange} className="border p-2 w-full mb-4" />
+      
+      <div className="flex justify-center gap-2">
+        <Button onClick={handleExport} className="w-1/2">Exportar como Imagem</Button>
+        <Button onClick={handleShare} className="w-1/2">Compartilhar</Button>
       </div>
-
-      {/* BOTÕES CORRIGIDOS */}
-      <button onClick={handleExport} className="mt-4 w-full border p-2 bg-blue-500 text-white rounded-lg shadow-md">
-        Exportar como Imagem
-      </button>
-      <button onClick={handleShare} className="mt-2 w-full border p-2 bg-green-500 text-white rounded-lg shadow-md">
-        Compartilhar
-      </button>
-
-      {/* PEIXE E FRASE FINAL (Corrigido e Proporcional) */}
-      <div className="text-center mt-6">
-        <img src="/Peixe.png" alt="Peixe BTJ" className="mx-auto w-16 h-auto object-contain" />
-        <p className="text-gray-600 font-semibold mt-2">
-          Fortalecer pessoas, pescando o melhor para nossos clientes
-        </p>
-      </div>
+      
+      <img src="/Peixe.png" alt="Peixe BTJ" className="mx-auto w-24 mt-4" />
+      <p className="mt-2">Fortalecer pessoas, pescando o melhor para nossos clientes</p>
     </div>
   );
 }
