@@ -103,4 +103,45 @@ export default function FichaApp() {
         <p><strong>Hora:</strong> {formData.hora}</p>
         <p><strong>Responsável:</strong> {formData.responsavel}</p>
         
-        {["carretao1", "carretao2",
+        {["carretao1", "carretao2", "carretao3"].map((carretao, idx) => (
+          <div key={carretao}>
+            <h3 className="text-lg font-semibold">Carretão {idx + 1}</h3>
+            <table className="border w-full mb-2">
+              <thead>
+                <tr>
+                  <th className="border p-2">Cx</th>
+                  <th className="border p-2">Ração</th>
+                  <th className="border p-2">Kg</th>
+                </tr>
+              </thead>
+              <tbody>
+                {[...Array(carretao === "carretao2" ? 6 : 8)].map((_, i) => (
+                  <tr key={i}>
+                    <td className="border p-2 text-center">{i + 1}</td>
+                    <td className="border p-2 text-center">{formData[carretao][i].racao}</td>
+                    <td className="border p-2 text-center">{formData[carretao][i].kgs}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        ))}
+
+        <p><strong>Observações:</strong> {formData.observacao}</p>
+      </div>
+
+      <button onClick={handleExport} className="mt-4 w-full bg-blue-500 text-white p-2 rounded">
+        Exportar como Imagem
+      </button>
+      <button onClick={handleShare} className="mt-2 w-full bg-green-500 text-white p-2 rounded">
+        Compartilhar
+      </button>
+
+      {/* Imagem do peixe e texto final */}
+      <div className="flex flex-col items-center mt-6">
+        <img src="/Peixe.png" alt="Peixe BTJ" className="h-16 w-auto" />
+        <p className="text-center mt-2 text-sm">Fortalecer pessoas, pescando o melhor para nossos clientes</p>
+      </div>
+    </div>
+  );
+}
