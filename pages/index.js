@@ -61,16 +61,16 @@ export default function FichaApp() {
     <div className="p-4 max-w-lg mx-auto">
       {/* LOGO BTJ - Ajustado para não ficar desproporcional */}
       <div className="flex justify-center">
-        <img src="/BTJ.png" alt="BTJ Logo" className="max-w-[180px] h-auto object-contain" />
+        <img src="/BTJ.png" alt="BTJ Logo" className="w-[70px] h-auto object-contain" />
       </div>
 
       <h1 className="text-xl font-bold mb-4 text-center">Ficha Contagem Estoque Ração</h1>
 
       {/* CAMPOS DE DATA, HORA E RESPONSÁVEL */}
       <div className="flex gap-2 mb-4">
-        <input type="date" name="data" value={formData.data} onChange={handleChange} className="border p-2 w-[100px]" />
-        <input type="time" name="hora" value={formData.hora} onChange={handleChange} className="border p-2 w-[100px]" />
-        <input type="text" name="responsavel" placeholder="Nome do responsável" value={formData.responsavel} onChange={handleChange} className="border p-2 w-[150px]" />
+        <input type="date" name="data" value={formData.data} onChange={handleChange} className="border p-2 w-[60px]" />
+        <input type="time" name="hora" value={formData.hora} onChange={handleChange} className="border p-2 w-[60px]" />
+        <input type="text" name="responsavel" placeholder="Nome do responsável" value={formData.responsavel} onChange={handleChange} className="border p-2 w-[100px]" />
       </div>
 
       {/* CAMPOS DOS CARRETÕES */}
@@ -81,8 +81,8 @@ export default function FichaApp() {
             <thead>
               <tr>
                 <th className="border p-2">Cx</th>
-                <th className="border p-2 w-[100px]">Ração</th>
-                <th className="border p-2 w-[100px]">Kgs</th>
+                <th className="border p-2 w-[80px]">Ração</th>
+                <th className="border p-2 w-[80px]">Kgs</th>
               </tr>
             </thead>
             <tbody>
@@ -113,7 +113,7 @@ export default function FichaApp() {
 
       {/* LOGO PEIXE - Ajustado para não ficar desproporcional */}
       <div className="flex justify-center mt-6">
-        <img src="/Peixe.png" alt="Peixe BTJ" className="max-w-[150px] h-auto object-contain" />
+        <img src="/Peixe.png" alt="Peixe BTJ" className="w-[50px] h-auto object-contain" />
       </div>
 
       {/* FRASE FINAL */}
