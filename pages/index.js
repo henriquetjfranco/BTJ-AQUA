@@ -59,9 +59,9 @@ export default function FichaApp() {
 
   return (
     <div className="p-4 max-w-lg mx-auto">
-      {/* LOGO BTJ */}
+      {/* LOGO BTJ - Ajustado para não ficar desproporcional */}
       <div className="flex justify-center">
-        <img src="/BTJ.png" alt="BTJ Logo" className="w-[200px] h-auto" />
+        <img src="/BTJ.png" alt="BTJ Logo" className="max-w-[180px] h-auto object-contain" />
       </div>
 
       <h1 className="text-xl font-bold mb-4 text-center">Ficha Contagem Estoque Ração</h1>
@@ -111,9 +111,9 @@ export default function FichaApp() {
         <button onClick={handleShare} className="border p-2 w-1/2">Compartilhar</button>
       </div>
 
-      {/* LOGO PEIXE */}
+      {/* LOGO PEIXE - Ajustado para não ficar desproporcional */}
       <div className="flex justify-center mt-6">
-        <img src="/Peixe.png" alt="Peixe BTJ" className="w-[150px] h-auto" />
+        <img src="/Peixe.png" alt="Peixe BTJ" className="max-w-[150px] h-auto object-contain" />
       </div>
 
       {/* FRASE FINAL */}
